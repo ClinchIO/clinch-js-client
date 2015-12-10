@@ -1,6 +1,5 @@
-// const API_ENDPOINT = 'https://api.clinchtalent.com/v1/';
-const API_ENDPOINT = 'http://localhost:3000';
-const PATH_PREFIX = '/api/v1/';
+const API_ENDPOINT = 'https://api.clinchtalent.com';
+const PATH_PREFIX = '/v1/';
 
 var request = require("request");
 var crypto = require("crypto");
@@ -30,9 +29,6 @@ ClinchClient.prototype.getResource = function(resource, callback) {
     url,
     options,
     callback
-    // function (error, response, body) {
-    //   console.log(response, body);
-    // }
   );
 };
 
