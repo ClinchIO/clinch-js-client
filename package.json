@@ -4,12 +4,17 @@
   "description": "A Javascript client for the Clinch Talent API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test.js"
   },
   "author": "Peter Keogh",
   "license": "MIT",
   "dependencies": {
     "crypto": "0.0.3",
     "request": "^2.67.0"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4",
+    "sinon": "^1.17.2"
   }
 }
