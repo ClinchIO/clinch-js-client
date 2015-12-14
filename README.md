@@ -20,16 +20,16 @@ Require the module:
 
 ```javascript
 
-var ClinchClient = require('clinch-js-client');
+var ClinchTalent = require('clinch-js-client');
 
 ```
 
 Use the module to get candidate data:
 
 ```javascript
-var client = new ClinchClient("YOUR-KEY", "YOUR-SECRET");
-client = ClinchClient.new("YOUR-KEY", "YOUR-SECRET");
-client.get_candidates(function (error, response, body) {}); // Get data for the collection of candidates
-client.get_candidate('candidateId', function (error, response, body) {}) // Get data for an individual candidate using the candidate's ID
+var client = new ClinchTalent("YOUR-KEY", "YOUR-SECRET");
+client = ClinchTalent.new("YOUR-KEY", "YOUR-SECRET");
+client.getCandidates(function (error, response, body) {}); // Get data for the collection of candidates
+client.getCandidate('candidateId', function (error, response, body) {}) // Get data for an individual candidate using the candidate's ID
 
 ```
