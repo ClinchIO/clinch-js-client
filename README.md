@@ -12,7 +12,7 @@ Install the module:
 
 ```
 
-npm install clinch-js-client
+npm install clinch-talent
 
 ```
 
@@ -20,7 +20,7 @@ Require the module:
 
 ```javascript
 
-var ClinchClient = require('clinch-js-client');
+var ClinchClient = require('clinch-talent');
 
 ```
 
@@ -30,6 +30,5 @@ Use the module to get candidate data:
 var client = new ClinchClient("YOUR-KEY", "YOUR-SECRET");
 client = ClinchClient.new("YOUR-KEY", "YOUR-SECRET");
 client.get_candidates(function (error, response, body) {}); // Get data for the collection of candidates
-client.get_candidate('candidateId', function (error, response, body) {}) // Get data for an individual candidate using the candidate's ID
-
+client.get_candidate('candidateId', function (error, response, body) {}) // Get data for an individual candidate using the candidate's ID=
 ```
