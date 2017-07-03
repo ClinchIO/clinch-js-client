@@ -36,7 +36,7 @@ ClinchTalent.prototype.getCandidates = function (callback) {
 
 
 ClinchTalent.prototype.getCandidate = function (candidateId, callback) {
-  this.getResource('candidates/' + candidateId, callback);
+  this.getResource(`candidates/${candidateId}`, callback);
 };
 
 // # Themes
@@ -46,15 +46,15 @@ ClinchTalent.prototype.getThemes = function(callback) {
 }
 
 ClinchTalent.prototype.getTheme = function (themeId, callback) {
-  this.getResource('themes/' + themeId, callback);
+  this.getResource(`themes/${themeId}`, callback);
 };
 
 ClinchTalent.prototype.getPageLayouts = function(themeId, callback) {
-    this.getResource('themes/' + themeId + '/page_layouts', callback);
+    this.getResource(`themes/${themeId}/page_layouts`, callback);
 }
 
 ClinchTalent.prototype.getPageLayout = function(themeId, pageLayoutId, callback) {
-    this.getResource('themes/' + themeId + '/page_layouts/' + pageLayoutId, callback);
+    this.getResource(`themes/${themeId}/page_layouts/${pageLayoutId}`, callback);
 }
 
 // # HMAC
