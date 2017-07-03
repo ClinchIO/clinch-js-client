@@ -51,7 +51,7 @@ describe('ClinchTalent', function () {
 	
     it('#getTheme()', function () {
       var mock = sinon.mock(request);
-      var expectedHeaders = {headers: {Accept: 'application/vnd.api+json', Authorization: 'APIAuth YOUR-KEY:4nZeylg4guRy7qhE1BDMSoF7vt8=', Date: 'Thu, 01 Jan 1970 00:00:00 GMT'}};
+      var expectedHeaders = {headers: {Accept: 'application/vnd.api+json', Authorization: 'APIAuth YOUR-KEY:xswV13clrzrVKzEgZufsF25TsiY=', Date: 'Thu, 01 Jan 1970 00:00:00 GMT'}};
       mock.expects('get').withArgs('https://api.clinchtalent.com/v1/themes/abc123', expectedHeaders).once();
       this.client.getTheme('abc123', function () {
       });
