@@ -1,6 +1,6 @@
 #Clinch Javascript Client
 
-[![Build Status](https://travis-ci.org/ClinchIO/clinch-js-client.svg?branch=master)](https://travis-ci.org/ClinchIO/clinch-talent-js)
+[![Build Status](https://travis-ci.org/ClinchIO/clinch-talent-js.svg?branch=master)](https://travis-ci.org/ClinchIO/clinch-talent-js)
 
 ##Getting Started
 
