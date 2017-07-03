@@ -57,6 +57,24 @@ describe('ClinchTalent', function () {
       });
       mock.verify();
     });
+	
+    it('#getPageLayouts()', function () {
+      var mock = sinon.mock(request);
+      var expectedHeaders = {headers: {Accept: 'application/vnd.api+json', Authorization: 'APIAuth YOUR-KEY:4nZeylg4guRy7qhE1BDMSoF7vt8=', Date: 'Thu, 01 Jan 1970 00:00:00 GMT'}};
+      mock.expects('get').withArgs('https://api.clinchtalent.com/v1/themes/abc123/pagelayouts', expectedHeaders).once();
+      this.client.getPageLayouts('abc123', function () {
+      });
+      mock.verify();
+    });
+	
+    it('#getPageLayout()', function () {
+      var mock = sinon.mock(request);
+      var expectedHeaders = {headers: {Accept: 'application/vnd.api+json', Authorization: 'APIAuth YOUR-KEY:4nZeylg4guRy7qhE1BDMSoF7vt8=', Date: 'Thu, 01 Jan 1970 00:00:00 GMT'}};
+      mock.expects('get').withArgs('https://api.clinchtalent.com/v1/themes/abc123/pagelayouts', expectedHeaders).once();
+      this.client.getPageLayouts('abc123', 'abc123', function () {
+      });
+      mock.verify();
+    });
 
     it('#getResource()', function () {
       var mock = sinon.mock(request);
