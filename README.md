@@ -1,10 +1,10 @@
 #Clinch Javascript Client
 
-[![Build Status](https://travis-ci.org/ClinchIO/clinch-js-client.svg?branch=master)](https://travis-ci.org/ClinchIO/clinch-js-client)
+[![Build Status](https://travis-ci.org/ClinchIO/clinch-js-client.svg?branch=master)](https://travis-ci.org/ClinchIO/clinch-talent-js)
 
 ##Getting Started
 
-This Javascript client allows developers to connect to the Clinch Talent API to access their data. In order to use the client you must have a valid Clinch Talent account and valid API keys. The steps to obtain keys can be found in the [developer documentation](http://dev.clinch.io/docs/api_getting_started).
+This Javascript client allows developers to connect to the Clinch Talent API to access their data. In order to use the client you must have a valid Clinch Talent account and valid API keys. The steps to obtain keys can be found in the [developer documentation](http://support.clinch.io/article/77-getting-started).
  
 ##Using the Module
 

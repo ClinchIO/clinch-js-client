@@ -1,12 +1,12 @@
 {
   "name": "clinch-talent",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Javascript client for the Clinch Talent API",
   "main": "index.js",
   "scripts": {
     "test": "mocha test.js"
   },
-  "author": "Peter Keogh",
+  "author": "Damien Glancy",
   "license": "MIT",
   "dependencies": {
     "crypto": "0.0.3",

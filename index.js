@@ -28,6 +28,8 @@ ClinchTalent.prototype.getResource = function (resource, callback) {
   request.get(url, options, callback);
 };
 
+// # Candidates
+
 ClinchTalent.prototype.getCandidates = function (callback) {
   this.getResource('candidates', callback);
 };
@@ -36,6 +38,26 @@ ClinchTalent.prototype.getCandidates = function (callback) {
 ClinchTalent.prototype.getCandidate = function (candidateId, callback) {
   this.getResource('candidates/' + candidateId, callback);
 };
+
+// # Themes
+
+ClinchTalent.prototype.getThemes = function(callback) {
+	this.getResource('themes', callback);
+}
+
+ClinchTalent.prototype.getTheme = function (themeId, callback) {
+  this.getResource('themes/' + themeId, callback);
+};
+
+ClinchTalent.prototype.getPageLayouts = function(themeId, callback) {
+    this.getResource('themes/' + themeId + '/page_layouts', callback);
+}
+
+ClinchTalent.prototype.getPageLayout = function(themeId, pageLayoutId, callback) {
+    this.getResource('themes/' + themeId + '/page_layouts/' + pageLayoutId, callback);
+}
+
+// # HMAC
 
 function generateHmac(data, secretKey) {
   return crypto.createHmac('sha1', secretKey).update(data).digest('base64');
