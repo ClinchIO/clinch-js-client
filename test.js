@@ -61,7 +61,7 @@ describe('ClinchTalent', function () {
     it('#getPageLayouts()', function () {
       var mock = sinon.mock(request);
       var expectedHeaders = {headers: {Accept: 'application/vnd.api+json', Authorization: 'APIAuth YOUR-KEY:4nZeylg4guRy7qhE1BDMSoF7vt8=', Date: 'Thu, 01 Jan 1970 00:00:00 GMT'}};
-      mock.expects('get').withArgs('https://api.clinchtalent.com/v1/themes/abc123/pagelayouts', expectedHeaders).once();
+      mock.expects('get').withArgs('https://api.clinchtalent.com/v1/themes/abc123/page_layouts', expectedHeaders).once();
       this.client.getPageLayouts('abc123', function () {
       });
       mock.verify();
@@ -70,8 +70,8 @@ describe('ClinchTalent', function () {
     it('#getPageLayout()', function () {
       var mock = sinon.mock(request);
       var expectedHeaders = {headers: {Accept: 'application/vnd.api+json', Authorization: 'APIAuth YOUR-KEY:4nZeylg4guRy7qhE1BDMSoF7vt8=', Date: 'Thu, 01 Jan 1970 00:00:00 GMT'}};
-      mock.expects('get').withArgs('https://api.clinchtalent.com/v1/themes/abc123/pagelayouts', expectedHeaders).once();
-      this.client.getPageLayouts('abc123', 'abc123', function () {
+      mock.expects('get').withArgs('https://api.clinchtalent.com/v1/themes/abc123/page_layouts/def123', expectedHeaders).once();
+      this.client.getPageLayouts('abc123', 'def123', function () {
       });
       mock.verify();
     });
