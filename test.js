@@ -75,12 +75,30 @@ describe('ClinchTalent', function () {
       });
       mock.verify();
     });
+	
+    it('#patchPageLayout()', function () {
+      var mock = sinon.mock(request);
+      var expectedHeaders = {headers: {Accept: 'application/vnd.api+json', Authorization: 'APIAuth YOUR-KEY:RRVWkOsSzoOHPwiR9BHmmoVNQEE=', Date: 'Thu, 01 Jan 1970 00:00:00 GMT'}, body: {html: '<html></html>'}, json: true};
+      mock.expects('patch').withArgs('https://api.clinchtalent.com/v1/themes/abc123/page_layouts/def123', expectedHeaders).once();
+      this.client.patchPageLayout('abc123', 'def123', {html: '<html></html>'}, function () {
+      });
+      mock.verify();
+    });
 
     it('#getResource()', function () {
       var mock = sinon.mock(request);
       var expectedHeaders = {headers: {Accept: 'application/vnd.api+json', Authorization: 'APIAuth YOUR-KEY:O3GXlD8wSyl7rn4LLKk5Ve2h/xQ=', Date: 'Thu, 01 Jan 1970 00:00:00 GMT'}};
       mock.expects('get').withArgs('https://api.clinchtalent.com/v1/candidates/abc123', expectedHeaders).once();
       this.client.getCandidate('abc123', function () {
+      });
+      mock.verify();
+    });
+	
+    it('#patchResource()', function () {
+	  var mock = sinon.mock(request);
+      var expectedHeaders = {headers: {Accept: 'application/vnd.api+json', Authorization: 'APIAuth YOUR-KEY:RRVWkOsSzoOHPwiR9BHmmoVNQEE=', Date: 'Thu, 01 Jan 1970 00:00:00 GMT'}, body: {html: '<html></html>'}, json: true};
+      mock.expects('patch').withArgs('https://api.clinchtalent.com/v1/themes/abc123/page_layouts/def123', expectedHeaders).once();
+      this.client.patchPageLayout('abc123', 'def123', {html: '<html></html>'}, function () {
       });
       mock.verify();
     });

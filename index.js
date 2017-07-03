@@ -9,28 +9,19 @@ function ClinchTalent(key, secret) {
   this.secret = secret;
 }
 
-function prepareRequest(resource, key, secret) {
-    var date = new Date().toUTCString();
-    var path = PATH_PREFIX + resource;
-    var url = API_ENDPOINT + path;
-    var contentType = '';
-    var contentMD5 = '';
-    var canonicalString = [contentType, contentMD5, path, date].join(',');
-
-    var options = {
-      'headers': {
-        'Date': date,
-        'Accept': 'application/vnd.api+json',
-        'Authorization': 'APIAuth ' + key + ":" + generateHmac(canonicalString, secret)
-      }
-    };
-	
-	return {url: url, options: options};
-}
+// # GET
 
 ClinchTalent.prototype.getResource = function (resource, callback) {
-  const preparedRequest = prepareRequest(resource, this.key, this.secret);
+  const preparedRequest = prepareRequest(this.key, this.secret, resource);
   request.get(preparedRequest['url'], preparedRequest['options'], callback);
+};
+
+
+// # PATCH
+
+ClinchTalent.prototype.patchResource = function (resource, content, callback) {
+  const preparedRequest = prepareRequest(this.key, this.secret, resource, content);
+  request.patch(preparedRequest['url'], preparedRequest['options'], callback);
 };
 
 // # Candidates
@@ -62,10 +53,39 @@ ClinchTalent.prototype.getPageLayout = function(themeId, pageLayoutId, callback)
     this.getResource(`themes/${themeId}/page_layouts/${pageLayoutId}`, callback);
 }
 
+ClinchTalent.prototype.patchPageLayout = function(themeId, pageLayoutId, content, callback) {
+    this.patchResource(`themes/${themeId}/page_layouts/${pageLayoutId}`, content, callback);
+}
+
 // # HMAC
 
 function generateHmac(data, secretKey) {
   return crypto.createHmac('sha1', secretKey).update(data).digest('base64');
+}
+
+// # Prepare HTTP Requests
+
+function prepareRequest(key, secret, resource, body=null) {
+    var date = new Date().toUTCString();
+    var path = PATH_PREFIX + resource;
+    var url = API_ENDPOINT + path;
+    var contentType = '';
+    var contentMD5 = '';
+    var canonicalString = [contentType, contentMD5, path, date].join(',');
+
+    var options = {
+      'headers': {
+        'Date': date,
+        'Accept': 'application/vnd.api+json',
+        'Authorization': 'APIAuth ' + key + ":" + generateHmac(canonicalString, secret)
+      },
+    };
+	
+	if (body) {
+		options = Object.assign(options, {'body': body, 'json': true})
+	}
+	
+	return {url: url, options: options};
 }
 
 module.exports = ClinchTalent;
