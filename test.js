@@ -39,6 +39,15 @@ describe('ClinchTalent', function () {
       });
       mock.verify();
     });
+	
+    it('#getThemes()', function () {
+      var mock = sinon.mock(request);
+      var expectedHeaders = {headers: {Accept: 'application/vnd.api+json', Authorization: 'APIAuth YOUR-KEY:cgLyS9HCvKFQMvoidj3sWphhYLk=', Date: 'Thu, 01 Jan 1970 00:00:00 GMT'}};
+      mock.expects('get').withArgs('https://api.clinchtalent.com/v1/themes', expectedHeaders).once();
+      this.client.getThemes(function () {
+      });
+      mock.verify();
+    });
 
     it('#getResource()', function () {
       var mock = sinon.mock(request);
