@@ -19,8 +19,8 @@ ClinchTalent.prototype.getResource = function (resource, callback) {
 
 // # PATCH
 
-ClinchTalent.prototype.patchResource = function (resource, content, callback) {
-  const preparedRequest = prepareRequest(this.key, this.secret, resource, content);
+ClinchTalent.prototype.patchResource = function (resource, data, callback) {
+  const preparedRequest = prepareRequest(this.key, this.secret, resource, data);
   request.patch(preparedRequest['url'], preparedRequest['options'], callback);
 };
 
@@ -53,8 +53,8 @@ ClinchTalent.prototype.getPageLayout = function(themeId, pageLayoutId, callback)
     this.getResource(`themes/${themeId}/page_layouts/${pageLayoutId}`, callback);
 }
 
-ClinchTalent.prototype.patchPageLayout = function(themeId, pageLayoutId, content, callback) {
-    this.patchResource(`themes/${themeId}/page_layouts/${pageLayoutId}`, content, callback);
+ClinchTalent.prototype.patchPageLayout = function(themeId, pageLayoutId, data, callback) {
+    this.patchResource(`themes/${themeId}/page_layouts/${pageLayoutId}`, data, callback);
 }
 
 // # HMAC
@@ -65,7 +65,7 @@ function generateHmac(data, secretKey) {
 
 // # Prepare HTTP Requests
 
-function prepareRequest(key, secret, resource, body=null) {
+function prepareRequest(key, secret, resource, data=null) {
     var date = new Date().toUTCString();
     var path = PATH_PREFIX + resource;
     var url = API_ENDPOINT + path;
@@ -81,8 +81,8 @@ function prepareRequest(key, secret, resource, body=null) {
       },
     };
 	
-	if (body) {
-		options = Object.assign(options, {'body': body, 'json': true})
+	if (data) {
+		options = Object.assign(options, {'body': data, 'json': true})
 	}
 	
 	return {url: url, options: options};
