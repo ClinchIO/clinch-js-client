@@ -9,23 +9,28 @@ function ClinchTalent(key, secret) {
   this.secret = secret;
 }
 
+function prepareRequest(resource, key, secret) {
+    var date = new Date().toUTCString();
+    var path = PATH_PREFIX + resource;
+    var url = API_ENDPOINT + path;
+    var contentType = '';
+    var contentMD5 = '';
+    var canonicalString = [contentType, contentMD5, path, date].join(',');
+
+    var options = {
+      'headers': {
+        'Date': date,
+        'Accept': 'application/vnd.api+json',
+        'Authorization': 'APIAuth ' + key + ":" + generateHmac(canonicalString, secret)
+      }
+    };
+	
+	return {url: url, options: options};
+}
+
 ClinchTalent.prototype.getResource = function (resource, callback) {
-  var date = new Date().toUTCString();
-  var path = PATH_PREFIX + resource;
-  var url = API_ENDPOINT + path;
-  var contentType = '';
-  var contentMD5 = '';
-  var canonicalString = [contentType, contentMD5, path, date].join(',');
-
-  var options = {
-    'headers': {
-      'Date': date,
-      'Accept': 'application/vnd.api+json',
-      'Authorization': 'APIAuth ' + this.key + ":" + generateHmac(canonicalString, this.secret)
-    }
-  };
-
-  request.get(url, options, callback);
+  const preparedRequest = prepareRequest(resource, this.key, this.secret);
+  request.get(preparedRequest['url'], preparedRequest['options'], callback);
 };
 
 // # Candidates
