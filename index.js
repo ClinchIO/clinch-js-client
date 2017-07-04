@@ -1,17 +1,11 @@
-// const API_ENDPOINT = 'https://api.clinchtalent.com';
-const PATH_PREFIX = '/v1/';
+const request = require('request');
+const crypto = require('crypto');
+const { URL } = require('url');
 
-var request = require('request');
-var crypto = require('crypto');
-
-function ClinchTalent(key, secret, endpoint=null) {
+function ClinchTalent(key, secret, endpoint='https://api.clinchtalent.com/v1/') {
   this.key = key;
   this.secret = secret;
-  if (endpoint) {
-  	this.endpoint = endpoint
-  } else {
-  	this.endpoint = 'https://api.clinchtalent.com'
-  }
+  this.endpoint=endpoint;
 }
 
 // # GET
@@ -69,11 +63,9 @@ function generateHmac(data, secretKey) {
 // # Prepare HTTP Requests
 
 function prepareRequest(key, secret, endpoint, resource, data=null) {
+	const url = new URL(endpoint);
     const date = new Date().toUTCString();
-	// const url = `${endpoint}/${resource}`
-	const path = `${PATH_PREFIX}${resource}`
-    // var path = PATH_PREFIX + resource;
-    const url = `${endpoint}${path}`
+	const path = url.pathname + resource
     const contentType = '';
     const contentMD5 = '';
     const canonicalString = [contentType, contentMD5, path, date].join(',');
@@ -90,7 +82,7 @@ function prepareRequest(key, secret, endpoint, resource, data=null) {
 		options = Object.assign(options, {'body': data, 'json': true})
 	}
 	
-	return {url: url, options: options};
+	return {url: url.origin + path, options: options};
 }
 
 module.exports = ClinchTalent;
