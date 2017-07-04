@@ -66,8 +66,8 @@ function prepareRequest(key, secret, endpoint, resource, data=null) {
 	const url_components = url.parse(endpoint);
     const date = new Date().toUTCString();
 	const path = url_components.pathname + resource
-    const contentType = '';
-    const contentMD5 = '';
+    const contentType = data !== null ? 'application/json' : '';
+    const contentMD5 = ''
     const canonicalString = [contentType, contentMD5, path, date].join(',');
 
     var options = {
