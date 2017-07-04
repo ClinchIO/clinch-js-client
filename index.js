@@ -1,6 +1,6 @@
 const request = require('request');
 const crypto = require('crypto');
-const { URL } = require('url');
+const url = require('url');
 
 function ClinchTalent(key, secret, endpoint='https://api.clinchtalent.com/v1/') {
   this.key = key;
@@ -63,9 +63,9 @@ function generateHmac(data, secretKey) {
 // # Prepare HTTP Requests
 
 function prepareRequest(key, secret, endpoint, resource, data=null) {
-	const url = new URL(endpoint);
+	const url_components = url.parse(endpoint);
     const date = new Date().toUTCString();
-	const path = url.pathname + resource
+	const path = url_components.pathname + resource
     const contentType = '';
     const contentMD5 = '';
     const canonicalString = [contentType, contentMD5, path, date].join(',');
@@ -82,7 +82,7 @@ function prepareRequest(key, secret, endpoint, resource, data=null) {
 		options = Object.assign(options, {'body': data, 'json': true})
 	}
 	
-	return {url: url.origin + path, options: options};
+	return {url: `${url_components.protocol}//${url_components.host}${path}`, options: options};
 }
 
 module.exports = ClinchTalent;
