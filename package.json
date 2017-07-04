@@ -1,6 +1,6 @@
 {
   "name": "clinch-talent",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "A Javascript client for the Clinch Talent API",
   "main": "index.js",
   "scripts": {

@@ -63,9 +63,9 @@ function generateHmac(data, secretKey) {
 // # Prepare HTTP Requests
 
 function prepareRequest(key, secret, endpoint, resource, data=null) {
-	const url_components = url.parse(endpoint);
+	const urlComponents = url.parse(endpoint);
     const date = new Date().toUTCString();
-	const path = url_components.pathname + resource
+	const path = urlComponents.pathname + resource
     const contentType = data !== null ? 'application/json' : '';
     const contentMD5 = ''
     const canonicalString = [contentType, contentMD5, path, date].join(',');
@@ -82,7 +82,7 @@ function prepareRequest(key, secret, endpoint, resource, data=null) {
 		options = Object.assign(options, {'body': data, 'json': true})
 	}
 	
-	return {url: `${url_components.protocol}//${url_components.host}${path}`, options: options};
+	return {url: `${urlComponents.protocol}//${urlComponents.host}${path}`, options: options};
 }
 
 module.exports = ClinchTalent;
