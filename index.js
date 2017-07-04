@@ -1,26 +1,30 @@
-const API_ENDPOINT = 'https://api.clinchtalent.com';
+// const API_ENDPOINT = 'https://api.clinchtalent.com';
 const PATH_PREFIX = '/v1/';
 
 var request = require('request');
 var crypto = require('crypto');
 
-function ClinchTalent(key, secret) {
+function ClinchTalent(key, secret, endpoint=null) {
   this.key = key;
   this.secret = secret;
+  if (endpoint) {
+  	this.endpoint = endpoint
+  } else {
+  	this.endpoint = 'https://api.clinchtalent.com'
+  }
 }
 
 // # GET
 
 ClinchTalent.prototype.getResource = function (resource, callback) {
-  const preparedRequest = prepareRequest(this.key, this.secret, resource);
+  const preparedRequest = prepareRequest(this.key, this.secret, this.endpoint, resource);
   request.get(preparedRequest['url'], preparedRequest['options'], callback);
 };
-
 
 // # PATCH
 
 ClinchTalent.prototype.patchResource = function (resource, data, callback) {
-  const preparedRequest = prepareRequest(this.key, this.secret, resource, data);
+  const preparedRequest = prepareRequest(this.key, this.secret, this.endpoint, resource, data);
   request.patch(preparedRequest['url'], preparedRequest['options'], callback);
 };
 
@@ -29,7 +33,6 @@ ClinchTalent.prototype.patchResource = function (resource, data, callback) {
 ClinchTalent.prototype.getCandidates = function (callback) {
   this.getResource('candidates', callback);
 };
-
 
 ClinchTalent.prototype.getCandidate = function (candidateId, callback) {
   this.getResource(`candidates/${candidateId}`, callback);
@@ -65,13 +68,15 @@ function generateHmac(data, secretKey) {
 
 // # Prepare HTTP Requests
 
-function prepareRequest(key, secret, resource, data=null) {
-    var date = new Date().toUTCString();
-    var path = PATH_PREFIX + resource;
-    var url = API_ENDPOINT + path;
-    var contentType = '';
-    var contentMD5 = '';
-    var canonicalString = [contentType, contentMD5, path, date].join(',');
+function prepareRequest(key, secret, endpoint, resource, data=null) {
+    const date = new Date().toUTCString();
+	// const url = `${endpoint}/${resource}`
+	const path = `${PATH_PREFIX}${resource}`
+    // var path = PATH_PREFIX + resource;
+    const url = `${endpoint}${path}`
+    const contentType = '';
+    const contentMD5 = '';
+    const canonicalString = [contentType, contentMD5, path, date].join(',');
 
     var options = {
       'headers': {

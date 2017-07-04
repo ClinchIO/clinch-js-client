@@ -102,5 +102,17 @@ describe('ClinchTalent', function () {
       });
       mock.verify();
     });
+	
+    it('#alternativeEndpoint', function () {
+      var mock = sinon.mock(request);
+      var expectedHeaders = {headers: {Accept: 'application/vnd.api+json', Authorization: 'APIAuth YOUR-KEY:O3GXlD8wSyl7rn4LLKk5Ve2h/xQ=', Date: 'Thu, 01 Jan 1970 00:00:00 GMT'}};
+      mock.expects('get').withArgs('https://alternative.endpoint.local/v1/candidates/abc123', expectedHeaders).once();
+      this.client = new ClinchTalent('YOUR-KEY', 'YOUR-SECRET', 'https://alternative.endpoint.local');
+      this.client.getCandidate('abc123', function () {
+      });
+      mock.verify();
+    });
+	
+	
   });
 });
