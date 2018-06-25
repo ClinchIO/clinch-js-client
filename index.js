@@ -22,6 +22,14 @@ ClinchTalent.prototype.patchResource = function (resource, data, callback) {
   request.patch(preparedRequest['url'], preparedRequest['options'], callback);
 };
 
+// # POST
+
+ClinchTalent.prototype.postResource = function (resource, data, callback) {
+  const preparedRequest = prepareRequest(this.key, this.secret, this.endpoint, resource, data);
+  request.post(preparedRequest['url'], preparedRequest['options'], callback);
+};
+
+
 // # Candidates
 
 ClinchTalent.prototype.getCandidates = function (callback) {
@@ -30,6 +38,10 @@ ClinchTalent.prototype.getCandidates = function (callback) {
 
 ClinchTalent.prototype.getCandidate = function (candidateId, callback) {
   this.getResource(`candidates/${candidateId}`, callback);
+};
+
+ClinchTalent.prototype.postCandidates = function (data, callback) {
+  this.postResource('candidates', data, callback);
 };
 
 // # Themes
