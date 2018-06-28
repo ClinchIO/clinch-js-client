@@ -38,6 +38,11 @@ ClinchTalent.prototype.postCandidate = function (data, callback) {
   this.postResource('candidates', data, callback);
 };
 
+//Departments
+ClinchTalent.prototype.getJobDepartments = function (callback) {
+  this.getResource('job_departments', callback);
+};
+
 // Themes
 
 ClinchTalent.prototype.getThemes = function (callback) {
