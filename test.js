@@ -60,9 +60,9 @@ describe('ClinchTalent', function () {
 
     it('#getJobLocationsCities()', function () {
       const mock = sinon.mock(request);
-      const expectedHeaders = {headers: {Accept: 'application/vnd.api+json', Authorization: 'APIAuth YOUR-KEY:ns9aSHl4Q8jvnBvViYX7W/8u4J0=', Date: 'Thu, 01 Jan 1970 00:00:00 GMT'}};
-      mock.expects('get').withArgs('https://api.clinchtalent.com/v1/job_locations/cities', expectedHeaders).once();
-      this.client.getJobLocationsCities(function () {
+      const expectedHeaders = {headers: {Accept: 'application/vnd.api+json', Authorization: 'APIAuth YOUR-KEY:rxFdOshIobRa7zQdnNDeQk2bS0c=', Date: 'Thu, 01 Jan 1970 00:00:00 GMT'}};
+      mock.expects('get').withArgs('https://api.clinchtalent.com/v1/job_locations/cities?department=engineering', expectedHeaders).once();
+      this.client.getJobLocationsCities("engineering", function () {
       });
       mock.verify();
     });

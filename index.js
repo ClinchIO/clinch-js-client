@@ -43,13 +43,12 @@ ClinchTalent.prototype.getJobDepartments = function (callback) {
   this.getResource('job_departments', callback);
 };
 
-//Job Locations Citieis
-ClinchTalent.prototype.getJobLocationsCities = function (callback) {
-  this.getResource('job_locations/cities', callback);
+//Job Locations Cities
+ClinchTalent.prototype.getJobLocationsCities = function (department, callback) {
+  this.getResource(`job_locations/cities?department=${department}`, callback);
 };
 
 // Themes
-
 ClinchTalent.prototype.getThemes = function (callback) {
   this.getResource('themes', callback);
 };
