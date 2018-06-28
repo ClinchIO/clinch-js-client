@@ -51,13 +51,12 @@ describe('ClinchTalent', function () {
 
     it('#getJobDepartments()', function () {
       const mock = sinon.mock(request);
-      const expectedHeaders = {headers: {Accept: 'application/vnd.api+json', Authorization: 'APIAuth YOUR-KEY:cgLyS9HCvKFQMvoidj3sWphhYLk=', Date: 'Thu, 01 Jan 1970 00:00:00 GMT'}};
+      const expectedHeaders = {headers: {Accept: 'application/vnd.api+json', Authorization: 'APIAuth YOUR-KEY:42GDd/h7aVWEIs1y4vudUcxwEWM=', Date: 'Thu, 01 Jan 1970 00:00:00 GMT'}};
       mock.expects('get').withArgs('https://api.clinchtalent.com/v1/job_departments', expectedHeaders).once();
       this.client.getJobDepartments(function () {
       });
       mock.verify();
     });
-
 
     it('#getThemes()', function () {
       const mock = sinon.mock(request);
