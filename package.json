@@ -1,6 +1,6 @@
 {
   "name": "clinch-talent",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "A Javascript client for the Clinch Talent API",
   "main": "index.js",
   "scripts": {
@@ -12,8 +12,8 @@
     "request": "^2.88.0"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^6.2.0",
-    "sinon": "^7.4.1"
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2",
+    "sinon": "^10.0.0"
   }
 }
