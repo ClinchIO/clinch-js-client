@@ -9,17 +9,17 @@ function ClinchTalent(key, secret, endpoint = 'https://api.clinchtalent.com/v1/'
 }
 
 ClinchTalent.prototype.getResource = function (resource, callback) {
-  const preparedRequest = prepareRequest(this.key, this.secret, this.endpoint, resource);
+  const preparedRequest = prepareRequest('GET', this.key, this.secret, this.endpoint, resource);
   request.get(preparedRequest['url'], preparedRequest['options'], callback);
 };
 
 ClinchTalent.prototype.patchResource = function (resource, data, callback) {
-  const preparedRequest = prepareRequest(this.key, this.secret, this.endpoint, resource, data);
+  const preparedRequest = prepareRequest('PATCH', this.key, this.secret, this.endpoint, resource, data);
   request.patch(preparedRequest['url'], preparedRequest['options'], callback);
 };
 
 ClinchTalent.prototype.postResource = function (resource, data, callback) {
-  const preparedRequest = prepareRequest(this.key, this.secret, this.endpoint, resource, data);
+  const preparedRequest = prepareRequest('POST', this.key, this.secret, this.endpoint, resource, data);
   request.post(preparedRequest['url'], preparedRequest['options'], callback);
 };
 
@@ -77,13 +77,13 @@ function generateHmac(data, secretKey) {
 
 // # Prepare HTTP Requests
 
-function prepareRequest(key, secret, endpoint, resource, data = null) {
+function prepareRequest(httpMethod, key, secret, endpoint, resource, data = null) {
   const urlComponents = url.parse(endpoint);
   const date = new Date().toUTCString();
   const path = urlComponents.pathname + resource;
   const contentType = data !== null ? 'application/json' : '';
   const contentMD5 = '';
-  const canonicalString = [contentType, contentMD5, path, date].join(',');
+  const canonicalString = [httpMethod, contentType, contentMD5, path, date].join(',');
 
   let options = {
     'headers': {
